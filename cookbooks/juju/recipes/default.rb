@@ -34,6 +34,7 @@ bash "keygen" do
   code <<-EOF
   ssh-keygen -t rsa -b 2048 -f /root/.ssh/id_rsa -q -N ''
 EOF
+  not_if "test -e /root/.ssh/id_rsa"
 end
 
 directory "/root/.juju" do
