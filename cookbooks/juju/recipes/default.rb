@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+rightscale_marker :begin
 
 apt_repository "juju-devel" do
   uri "http://ppa.launchpad.net/juju/devel/ubuntu"
@@ -35,6 +36,13 @@ bash "keygen" do
 EOF
 end
 
+directory "/root/.juju" do
+  owner "root"
+  group "root"
+  mode "0644"
+  action :create
+end
+
 template "/root/.juju/environments.yaml" do
   source "environments.yaml.erb"
   owner "root"
@@ -46,3 +54,5 @@ template "/root/.juju/environments.yaml" do
            )
   action :create
 end
+
+rightscale_marker :end
