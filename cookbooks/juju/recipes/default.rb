@@ -21,6 +21,8 @@ apt_repository "juju-devel" do
   uri "http://ppa.launchpad.net/juju/devel/ubuntu"
   distribution node['lsb']['codename']
   components ["main"]
+  keyserver "keyserver.ubuntu.com"
+  key "C8068B11"
 end
 
 package "juju-core" do
