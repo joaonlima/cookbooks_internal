@@ -31,13 +31,16 @@ bash "keygen" do
   code <<-EOF
   ssh-keygen -t rsa -b 2048 -f /root/.ssh/id_rsa -q -N ''
 EOF
+end
 
 template "/root/.juju/environments.yaml" do
   source "environments.yaml.erb"
   owner "root"
   group "root"
   mode "0644"
-  variables( :access_key_id => node[:juju][:access_key_id],
-             :secret_access_key => node[:juju][:secret_access_key])
+  variables(
+             :access_key_id => node[:juju][:access_key_id],
+             :secret_access_key => node[:juju][:secret_access_key]
+           )
   action :create
 end
