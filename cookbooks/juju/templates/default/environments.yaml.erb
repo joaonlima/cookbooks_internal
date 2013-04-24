@@ -1,0 +1,105 @@
+## This is the Juju config file, which you can use to specify multiple environments in which to deploy.
+## By default Juju ships AWS (default), HP Cloud, OpenStack.
+## See https://juju.ubuntu.com/docs for more information
+
+## An environment configuration must always specify at least the following information:
+##
+## - name (to identify the environment)
+## - type (to specify the provider)
+## - admin-secret (an arbitrary "password" identifying an client with administrative-level access to system state)
+
+## Values in <brackets> below need to be filled in by the user.
+
+## The default environment is chosen when one is not specified using either:
+##   -e, --environment command line parameter
+##   JUJU_ENV environment variable
+## If both -e and JUJU_ENV are specified, the command line parameter has precedence.
+default: amazon
+
+environments:
+  maas:
+    type: maas
+    # Change this to where your MAAS server lives.  It must specify the base path.
+    maas-server: 'http://192.168.1.1/MAAS/'
+    maas-oauth: '<add your OAuth credentials from MAAS here>'
+    admin-secret: d5509ec30584c83db04b2c304ecee440
+    default-series: precise
+    authorized-keys-path: ~/.ssh/authorized_keys # or any file you want.
+    # Or:
+    # authorized-keys: ssh-rsa keymaterialhere
+  ## https://juju.ubuntu.com/get-started/openstack/
+  openstack:
+    type: openstack
+    # Specifies whether the use of a floating IP address is required to give the nodes
+    # a public IP address. Some installations assign public IP addresses by default without
+    # requiring a floating IP address.
+    # use-floating-ip: false
+    admin-secret: a636eadb3542ed1d008658867ca80eb5
+    # Globally unique swift bucket name
+    control-bucket: juju-11d6c8a98a29082e97ef69fefe6740ac
+    # Usually set via the env variable OS_AUTH_URL, but can be specified here
+    # auth-url: https://yourkeystoneurl:443/v2.0/
+    # override if your workstation is running a different series to which you are deploying
+    # default-series: precise
+    default-image-id: c876e5fe-abb0-41f0-8f29-f0b47481f523
+    default-instance-type: "m1.small"
+    # The following are used for userpass authentication (the default)
+    auth-mode: userpass
+    # Usually set via the env variable OS_USERNAME, but can be specified here
+    # username: <your username>
+    # Usually set via the env variable OS_PASSWORD, but can be specified here
+    # password: <secret>
+    # Usually set via the env variable OS_TENANT_NAME, but can be specified here
+    # tenant-name: <your tenant name>
+    # Usually set via the env variable OS_REGION_NAME, but can be specified here
+    # region: <your region>
+  
+  ## https://juju.ubuntu.com/get-started/hp-cloud/
+  hpcloud:
+    type: openstack
+    # Specifies whether the use of a floating IP address is required to give the nodes
+    # a public IP address. Some installations assign public IP addresses by default without
+    # requiring a floating IP address.
+    use-floating-ip: false
+    admin-secret: 757c9881af86c666fb0cc48635125a4c
+    # Globally unique swift bucket name
+    control-bucket: juju-503393ca600922694aa79afbab538e9a
+    # Not required if env variable OS_AUTH_URL is set
+    auth-url: https://yourkeystoneurl:35357/v2.0/
+    # override if your workstation is running a different series to which you are deploying
+    # default-series: precise
+    default-image-id: "75845"
+    default-instance-type: "standard.xsmall"
+    # The following are used for userpass authentication (the default)
+    auth-mode: userpass
+    # Usually set via the env variable OS_USERNAME, but can be specified here
+    # username: <your username>
+    # Usually set via the env variable OS_PASSWORD, but can be specified here
+    # password: <secret>
+    # Usually set via the env variable OS_TENANT_NAME, but can be specified here
+    # tenant-name: <your tenant name>
+    # Usually set via the env variable OS_REGION_NAME, but can be specified here
+    # region: <your region>
+    # The following are used for keypair authentication
+    # auth-mode: keypair
+    # Usually set via the env variable AWS_ACCESS_KEY_ID, but can be specified here
+    # access-key: <secret>
+    # Usually set via the env variable AWS_SECRET_ACCESS_KEY, but can be specified here
+    # secret-key: <secret>
+  
+  ## https://juju.ubuntu.com/get-started/amazon/
+  amazon:
+    type: ec2
+    admin-secret: a2b0f1c555b85f4119310b0f7325660b
+    # globally unique S3 bucket name
+    control-bucket: juju-2839da0a539c11d7f8b6dd77a9a4d58a
+    # override if your workstation is running a different series to which you are deploying
+    # default-series: precise
+    # region defaults to us-east-1, override if required
+    # region: us-east-1
+    # Usually set via the env variable AWS_ACCESS_KEY_ID, but can be specified here
+    access-key: <%= @access_key_id %>
+    # Usually set via the env variable AWS_SECRET_ACCESS_KEY, but can be specified here
+    # secret-key: <%= @secret_access_key %>
+  
+
