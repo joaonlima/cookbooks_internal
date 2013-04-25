@@ -56,9 +56,4 @@ template "/root/.juju/environments.yaml" do
   action :create
 end
 
-bash "juju-bootstrap" do
-  code <<-EOF
-juju bootstrap
-EOF
-end
 rightscale_marker :end

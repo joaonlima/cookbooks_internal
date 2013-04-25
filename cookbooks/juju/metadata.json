@@ -1,58 +1,72 @@
 {
-  "replacing": {
-  },
-  "maintainer_email": "premium@rightscale.com",
-  "conflicting": {
-  },
   "dependencies": {
     "apt": ">= 0.0.0",
     "rightscale": ">= 0.0.0"
   },
-  "groupings": {
-  },
-  "long_description": "juju Cookbook\n=============\nTODO: Enter the cookbook description here.\n\ne.g.\nThis cookbook makes your favorite breakfast sandwhich.\n\nRequirements\n------------\nTODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.\n\ne.g.\n#### packages\n- `toaster` - juju needs toaster to brown your bagel.\n\nAttributes\n----------\nTODO: List you cookbook attributes here.\n\ne.g.\n#### juju::default\n<table>\n  <tr>\n    <th>Key</th>\n    <th>Type</th>\n    <th>Description</th>\n    <th>Default</th>\n  </tr>\n  <tr>\n    <td><tt>['juju']['bacon']</tt></td>\n    <td>Boolean</td>\n    <td>whether to include bacon</td>\n    <td><tt>true</tt></td>\n  </tr>\n</table>\n\nUsage\n-----\n#### juju::default\nTODO: Write usage instructions for each cookbook.\n\ne.g.\nJust include `juju` in your node's `run_list`:\n\n```json\n{\n  \"name\":\"my_node\",\n  \"run_list\": [\n    \"recipe[juju]\"\n  ]\n}\n```\n\nContributing\n------------\nTODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.\n\ne.g.\n1. Fork the repository on Github\n2. Create a named feature branch (like `add_component_x`)\n3. Write you change\n4. Write tests for your change (if applicable)\n5. Run the tests, ensuring they all pass\n6. Submit a Pull Request using Github\n\nLicense and Authors\n-------------------\nAuthors: TODO: List authors\n",
-  "name": "juju",
-  "recommendations": {
-  },
-  "maintainer": "RightScale Inc",
-  "suggestions": {
-  },
-  "description": "Installs/Configures juju",
-  "providing": {
-  },
-  "license": "Apache 2.0",
-  "recipes": {
-    "juju::default": "installs and configures juju"
-  },
-  "attributes": {
-    "juju/access_key_id": {
-      "display_name": "Access Key ID",
-      "required": "optional",
-      "type": "string",
-      "choice": [
-
-      ],
-      "calculated": false,
-      "description": "access_key_id",
-      "recipes": [
-
-      ]
-    },
-    "juju/secret_access_key": {
-      "display_name": "Secret Access Key",
-      "required": "optional",
-      "type": "string",
-      "choice": [
-
-      ],
-      "calculated": false,
-      "description": "Secret Access Key",
-      "recipes": [
-
-      ]
-    }
+  "platforms": {
   },
   "version": "0.1.0",
-  "platforms": {
-  }
+  "conflicting": {
+  },
+  "suggestions": {
+  },
+  "providing": {
+  },
+  "recipes": {
+    "juju::default": "installs and configures juju",
+    "juju::deploy": "installs juju charms"
+  },
+  "attributes": {
+    "juju/secret_access_key": {
+      "type": "string",
+      "calculated": false,
+      "recipes": [
+
+      ],
+      "display_name": "Secret Access Key",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "description": "Secret Access Key"
+    },
+    "juju/charms": {
+      "type": "string",
+      "calculated": false,
+      "recipes": [
+        "juju::deploy"
+      ],
+      "display_name": "Juju Charms",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "description": "Comma separated list of juju charms to install"
+    },
+    "juju/access_key_id": {
+      "type": "string",
+      "calculated": false,
+      "recipes": [
+
+      ],
+      "display_name": "Access Key ID",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "description": "access_key_id"
+    }
+  },
+  "description": "Installs/Configures juju",
+  "groupings": {
+  },
+  "recommendations": {
+  },
+  "maintainer_email": "premium@rightscale.com",
+  "maintainer": "RightScale Inc",
+  "long_description": "juju Cookbook\n=============\nTODO: Enter the cookbook description here.\n\ne.g.\nThis cookbook makes your favorite breakfast sandwhich.\n\nRequirements\n------------\nTODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.\n\ne.g.\n#### packages\n- `toaster` - juju needs toaster to brown your bagel.\n\nAttributes\n----------\nTODO: List you cookbook attributes here.\n\ne.g.\n#### juju::default\n<table>\n  <tr>\n    <th>Key</th>\n    <th>Type</th>\n    <th>Description</th>\n    <th>Default</th>\n  </tr>\n  <tr>\n    <td><tt>['juju']['bacon']</tt></td>\n    <td>Boolean</td>\n    <td>whether to include bacon</td>\n    <td><tt>true</tt></td>\n  </tr>\n</table>\n\nUsage\n-----\n#### juju::default\nTODO: Write usage instructions for each cookbook.\n\ne.g.\nJust include `juju` in your node's `run_list`:\n\n```json\n{\n  \"name\":\"my_node\",\n  \"run_list\": [\n    \"recipe[juju]\"\n  ]\n}\n```\n\nContributing\n------------\nTODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.\n\ne.g.\n1. Fork the repository on Github\n2. Create a named feature branch (like `add_component_x`)\n3. Write you change\n4. Write tests for your change (if applicable)\n5. Run the tests, ensuring they all pass\n6. Submit a Pull Request using Github\n\nLicense and Authors\n-------------------\nAuthors: TODO: List authors\n",
+  "replacing": {
+  },
+  "name": "juju",
+  "license": "Apache 2.0"
 }
