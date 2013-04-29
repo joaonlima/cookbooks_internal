@@ -11,6 +11,7 @@ depends "rightscale"
 depends "apt"
 
 recipe "juju::default", "installs and configures juju"
+recipe "juju::bootstrap", "bootstraps the server"
 recipe "juju::deploy", "installs juju charms"
 
 attribute "juju/access_key_id", 
@@ -24,4 +25,5 @@ attribute "juju/secret_access_key",
 attribute "juju/charms",
   :display_name => "Juju Charms",
   :description => "Comma separated list of juju charms to install",
+  :required => "required",
   :recipes => ["juju::deploy"]
