@@ -44,6 +44,8 @@ directory "/root/.juju" do
   action :create
 end
 
+require 'md5'
+folder_hash=MD5.new.to_s
 template "/root/.juju/environments.yaml" do
   source "environments.yaml.erb"
   owner "root"
@@ -51,7 +53,8 @@ template "/root/.juju/environments.yaml" do
   mode "0644"
   variables(
              :access_key_id => node[:juju][:access_key_id],
-             :secret_access_key => node[:juju][:secret_access_key]
+             :secret_access_key => node[:juju][:secret_access_key],
+             :folder_hash => folder_hash
            )
   action :create
 end
